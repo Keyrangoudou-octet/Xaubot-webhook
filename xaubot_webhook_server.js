@@ -292,6 +292,27 @@ app.post('/webhook/stripe', express.raw({ type: 'application/json' }), async (re
 // Health check
 app.get('/', (req, res) => res.send('XauBot webhook server running ✅'));
 
+// ROUTE DE TEST TEMPORAIRE — à supprimer après validation
+app.get('/test', async (req, res) => {
+  const { email, product: code } = req.query;
+  if (!email || !code) return res.status(400).json({ error: 'email et product requis' });
+  const product = Object.values(PRODUCTS).find(p => p.code === code.toUpperCase());
+  if (!product) return res.status(404).json({ error: `Code inconnu: ${code}. Valides: FTMO, AGG, BTC, SCALP, PROP, FULL` });
+  const licenseKey = generateLicenseKey(product.code, `test_${Date.now()}`);
+  console.log(`🧪 TEST: ${product.name} | Email: ${email} | Clé: ${licenseKey}`);
+  const { error } = await resend.emails.send({
+    from: 'XauBot Pro <contact@xaubot.pro>',
+    to: email,
+    subject: `✅ [TEST] Votre ${product.name} est prêt — Clé & Téléchargement`,
+    html: buildEmailHtml(product, licenseKey, email),
+  });
+  if (error) return res.status(500).json({ error });
+  res.json({ success: true, licenseKey, email, product: product.name });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
