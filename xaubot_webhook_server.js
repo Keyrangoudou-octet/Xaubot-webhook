@@ -198,6 +198,13 @@ function buildEmailHtml(product, licenseKey, customerEmail) {
     ${paramsBlock}
     ${tipBlock}
 
+    <!-- VPS Affilié -->
+    <div style="background:linear-gradient(135deg,rgba(245,200,66,0.05),rgba(245,200,66,0.02));border:1px solid rgba(245,200,66,0.2);border-radius:10px;padding:20px;margin-bottom:24px;text-align:center;">
+      <div style="font-size:12px;color:#F5C842;font-weight:700;margin-bottom:10px;">🖥️ FAITES TOURNER VOTRE ROBOT 24H/24</div>
+      <p style="font-size:13px;color:rgba(240,238,232,0.7);line-height:1.7;margin:0 0 14px;">Pour que votre robot trade même quand votre ordinateur est éteint, vous avez besoin d'un VPS Windows. Nous recommandons <strong style="color:#F0EEE8;">ForexVPS</strong> — optimisé pour MetaTrader, faible latence, disponible 24h/24.</p>
+      <a href="https://www.forexvps.net/?aff=131737" style="display:inline-block;background:#F5C842;color:#07070f;font-size:14px;font-weight:700;padding:12px 28px;border-radius:6px;text-decoration:none;">Obtenir mon VPS →</a>
+    </div>
+
     <!-- Licence -->
     <div style="border-left:3px solid #F5C842;padding-left:16px;margin-bottom:28px;">
       <p style="font-size:13px;color:rgba(240,238,232,0.5);line-height:1.7;margin:0;">
